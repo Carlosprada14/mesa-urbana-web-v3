@@ -235,6 +235,11 @@
   }
 
   /* WhatsApp floating widget */
+  /* the wrapper sizes itself to fit the (usually invisible) chat panel, leaving a large
+     invisible clickable area over whatever content sits behind it — only the fab/open
+     panel should actually catch taps */
+  .wa-widget { pointer-events: none; }
+  .wa-widget #wa-fab { pointer-events: auto; }
   .wa-panel { opacity: 0; transform: scale(0.92) translateY(12px); pointer-events: none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
   .wa-panel.is-open { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
   .wa-fab-ping { animation: wa-ping 2.4s cubic-bezier(0,0,0.2,1) 3 forwards; }
@@ -1006,7 +1011,7 @@
 </div>
 
 <!-- WHATSAPP FLOATING WIDGET -->
-<div class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[90] flex flex-col items-end gap-3">
+<div class="wa-widget fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[90] flex flex-col items-end gap-3">
   <div id="wa-panel" class="wa-panel origin-bottom-right w-[86vw] max-w-[320px] rounded-2xl overflow-hidden border border-ink/10 bg-white shadow-2xl" role="dialog" aria-modal="false" aria-labelledby="wa-panel-title">
     <div class="bg-forest-950 text-bone px-5 py-4 flex items-center gap-3">
       <div class="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center shrink-0">
